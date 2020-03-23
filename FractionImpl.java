@@ -12,8 +12,29 @@ public class FractionImpl implements Fraction {
      * @param numerator
      * @param denominator
      */
+
+     private int numerator;
+     private int denominator;
+
     public FractionImpl(int numerator, int denominator) {
-        // TODO
+        try {
+          denominator == 0;
+        }
+        catch( ArithmeticException exc ) {
+          System.out.println("Cannot devide by Zero")
+        }
+
+        int low = egcd(numerator, denominator);
+        numerator /= low;
+        denominator /= low;
+
+        if (denominator < 0){
+          numerator = -numerator;
+          denominator = - denominator;
+        }
+
+        this.numerator = numerator;
+        this.denominator = denominator;
     }
 
     /**
@@ -22,7 +43,8 @@ public class FractionImpl implements Fraction {
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        // TODO
+        this.numerator = wholeNumber;
+        this.denominator = 1;
     }
 
     /**
@@ -37,7 +59,13 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        // TODO
+        /*
+        split about /
+        remove spaces from either end
+        convert string to an intege
+        INCOMPLETE
+        */
+      String[] arr = fraction.split("/");
     }
 
     /**
@@ -45,7 +73,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction add(Fraction f) {
-        return null;
+        int num = numerator * f.denominator + denominator * f.numerator;
+        int den = denominator * f.denominator;
+        return new Fraction(num, den);
     }
 
     /**
@@ -53,7 +83,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction subtract(Fraction f) {
-        return null;
+      int num = numerator * f.denominator - denominator * f.numerator;
+      int den = denominator * f.denominator;
+      return new Fraction(num, den);
     }
 
     /**
@@ -61,7 +93,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction multiply(Fraction f) {
-        return null;
+      int num = numerator * f.numerator;
+      int den = denominator * f.denominator;
+      return new Fraction(num, den);
     }
 
     /**
@@ -69,15 +103,19 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction divide(Fraction f) {
-        return null;
+      int num = numerator * f.denominator;
+      int den = denominator * f.numerator;
+      return new Fraction(num, den);
     }
 
     /**
      * @inheritDoc
      */
     @Override
-    public Fraction abs() {
-        return null;
+    public Fraction abs() {            //???
+      int num = abs(numerator);
+      int den = abs(denominator);
+      return new Fraction(num, den);
     }
 
     /**
@@ -85,7 +123,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction negate() {
-        return null;
+      int num = 0 - numerator;
+      int den = denominator;
+      return new Fraction(num, den);
     }
 
     /**
@@ -101,6 +141,7 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
+
         return super.equals(obj);
     }
 
@@ -117,7 +158,9 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        return null;
+      int num = denominator;
+      int den = numerator;
+      return new Fraction(num, den);
     }
 
     /**
@@ -135,4 +178,21 @@ public class FractionImpl implements Fraction {
     public String toString() {
         return null;
     }
+    /*
+    Euclidean algorithm
+    */
+
+    public int egcd(int a, int b) {
+    if (a == 0)
+        return b;
+
+    while (b != 0) {
+        if (a > b)
+            a = a - b;
+        else
+            b = b - a;
+    }
+
+    return a;
+}
 }
