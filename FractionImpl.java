@@ -21,10 +21,10 @@ public class FractionImpl implements Fraction {
           denominator == 0;
         }
         catch( ArithmeticException exc ) {
-          System.out.println("Cannot devide by Zero")
+          throw new ArithmeticException("Divide by zero");
         }
 
-        int low = egcd(numerator, denominator);
+        int low = lcd(numerator, denominator);
         numerator /= low;
         denominator /= low;
 
@@ -61,11 +61,42 @@ public class FractionImpl implements Fraction {
     public FractionImpl(String fraction) {
         /*
         split about /
-        remove spaces from either end
+        strip and remove spaces from either end
         convert string to an intege
-        INCOMPLETE
+        if array length is equal to one the add denominator and returned
+        if array is equal to one then pass it through previous method
+        IN
+
+        use:
+        Integer(string).parseInt()
         */
-      String[] arr = fraction.split("/");
+
+        //ArrayList<Integer> wordListNew = new ArrayList<Integer>(fraction.split("/"));
+
+        ArrayList<String> fracstring = new ArrayList<String>(Arrays.asList(string.split("/")));
+        ArrayList<Integer> fracint = new ArrayList<Integer>(fracstring.size());
+
+        for (int i = 0; i < fracstring.size(); i++){
+          try{
+            fracint.add(i, fracstring.get(i).trim());
+          }
+          catch ( NumberFormatException exc ){
+            throw new NumberFormatException("Incorrect number format.");
+          }
+        }
+
+        if (fracint.size() == 1){
+          FractionImpl(fracint.get(0));
+        }
+        else{
+          FractionImpl(fracint.get(0), fracint.get(1))
+        }
+
+
+
+
+
+
     }
 
     /**
@@ -178,11 +209,9 @@ public class FractionImpl implements Fraction {
     public String toString() {
         return null;
     }
-    /*
-    Euclidean algorithm
-    */
 
-    public int egcd(int a, int b) {
+
+    private int lcd(int a, int b) {
     if (a == 0)
         return b;
 
