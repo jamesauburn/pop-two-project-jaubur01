@@ -17,10 +17,7 @@ public class FractionImpl implements Fraction {
      private int denominator;
 
     public FractionImpl(int numerator, int denominator) {
-        try {
-          denominator == 0;
-        }
-        catch( ArithmeticException exc ) {
+        if (denominator == 0){
           throw new ArithmeticException("Divide by zero");
         }
 
@@ -78,7 +75,9 @@ public class FractionImpl implements Fraction {
 
         for (int i = 0; i < fracstring.size(); i++){
           try{
-            fracint.add(i, fracstring.get(i).trim());
+            String hold = fracstring.get(i);
+            hold.trim();
+            fracint.add(i, Integer(hold).parseInt());
           }
           catch ( NumberFormatException exc ){
             throw new NumberFormatException("Incorrect number format.");
@@ -89,14 +88,8 @@ public class FractionImpl implements Fraction {
           FractionImpl(fracint.get(0));
         }
         else{
-          FractionImpl(fracint.get(0), fracint.get(1))
+          FractionImpl(fracint.get(0), fracint.get(1));
         }
-
-
-
-
-
-
     }
 
     /**
