@@ -1,7 +1,7 @@
 package fraction;
 
 public class FractionImpl implements Fraction {
-    /**
+    /*
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
      * Normalize the fraction as you create it.
      * For instance, if the parameters are <pre>(8, -12)</pre>, create a <pre>Fraction</pre> with numerator
@@ -20,31 +20,29 @@ public class FractionImpl implements Fraction {
         if (denominator == 0){
           throw new ArithmeticException("Divide by zero");
         }
+        else if (denominator < 0){
+          numerator *= -1;
+          denominator *= -1;
+        }
 
         int low = lcd(numerator, denominator);
         numerator /= low;
         denominator /= low;
 
-        if (denominator < 0){
-          numerator = -numerator;
-          denominator = - denominator;
-        }
-
         this.numerator = numerator;
         this.denominator = denominator;
     }
 
-    /**
+    /*
      * The parameter is the numerator and <pre>1</pre> is the implicit denominator.
      *
      * @param wholeNumber representing the numerator
      */
     public FractionImpl(int wholeNumber) {
-        this.numerator = wholeNumber;
-        this.denominator = 1;
+        this(wholeNumber, 1);
     }
 
-    /**
+    /*
      * The parameter is a <pre>String</pre> containing either a whole number, such as `5` or `-3`, or a fraction,
      * such as "8/-12".
      * Allow blanks around (but not within) integers.
@@ -69,7 +67,7 @@ public class FractionImpl implements Fraction {
         */
 
         //ArrayList<Integer> wordListNew = new ArrayList<Integer>(fraction.split("/"));
-
+/*
         ArrayList<String> fracstring = new ArrayList<String>(Arrays.asList(string.split("/")));
         ArrayList<Integer> fracint = new ArrayList<Integer>(fracstring.size());
 
@@ -83,16 +81,19 @@ public class FractionImpl implements Fraction {
             throw new NumberFormatException("Incorrect number format.");
           }
         }
-
         if (fracint.size() == 1){
-          FractionImpl(fracint.get(0));
+          this(fracint.get(0));
         }
         else{
-          FractionImpl(fracint.get(0), fracint.get(1));
+          this(fracint.get(0), fracint.get(1));
         }
+*/
+        String [] a = s.split("/");
+        int n = Integer.parseInt(a[0]);
+        int d = Integer.parseInt(a[1]);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -102,7 +103,7 @@ public class FractionImpl implements Fraction {
         return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -112,7 +113,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -122,7 +123,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -132,7 +133,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -142,7 +143,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -152,7 +153,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -160,7 +161,7 @@ public class FractionImpl implements Fraction {
         return super.hashCode();
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -169,7 +170,7 @@ public class FractionImpl implements Fraction {
         return super.equals(obj);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -177,7 +178,7 @@ public class FractionImpl implements Fraction {
         return super.clone();
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -187,7 +188,7 @@ public class FractionImpl implements Fraction {
       return new Fraction(num, den);
     }
 
-    /**
+    /*
      * @inheritDoc
      */
     @Override
@@ -205,16 +206,16 @@ public class FractionImpl implements Fraction {
 
 
     private int lcd(int a, int b) {
-    if (a == 0)
-        return b;
 
-    while (b != 0) {
+    if (a < 0){a *= -1;}
+    if (b < 0){b *= -1;}
+
+    while (a != b) {
         if (a > b)
-            a = a - b;
+            a -= b;
         else
-            b = b - a;
+            b -= a;
     }
-
     return a;
 }
 }
