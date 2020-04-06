@@ -201,7 +201,11 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public String toString() {
-        return null;
+      if (this.denominator == 1){
+    		return Integer.toString(this.numerator
+      }
+      else{
+    		return (this.numerator + "/" + this.denominator);
     }
 
 
