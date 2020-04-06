@@ -207,6 +207,7 @@ public class FractionImpl implements Fraction {
       else{
     		return (this.numerator + "/" + this.denominator);
     }
+  }
 
 
     private int lcd(int a, int b) {
