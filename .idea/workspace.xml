@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5543cd95-f497-4100-a35f-27d1d600ddf7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fraction/FractionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fraction/FractionImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/fraction/FractionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/fraction/FractionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +60,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FractionTest.testNegate">
+  <component name="RunManager" selected="JUnit.FractionTest.testNonLegalInteger">
     <configuration name="FractionImplTest.testConstructors" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Fraction" />
       <extension name="coverage">
@@ -91,7 +92,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FractionTest.testDivide" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FractionTest.testCompareTo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Fraction" />
       <extension name="coverage">
         <pattern>
@@ -101,13 +102,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="fraction" />
       <option name="MAIN_CLASS_NAME" value="fraction.FractionTest" />
-      <option name="METHOD_NAME" value="testDivide" />
+      <option name="METHOD_NAME" value="testCompareTo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FractionTest.testFraction" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FractionTest.testDivideByZero" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Fraction" />
       <extension name="coverage">
         <pattern>
@@ -117,13 +118,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="fraction" />
       <option name="MAIN_CLASS_NAME" value="fraction.FractionTest" />
-      <option name="METHOD_NAME" value="testFraction" />
+      <option name="METHOD_NAME" value="testDivideByZero" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FractionTest.testMultipy" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FractionTest.testNonLegalInteger" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Fraction" />
       <extension name="coverage">
         <pattern>
@@ -133,13 +134,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="fraction" />
       <option name="MAIN_CLASS_NAME" value="fraction.FractionTest" />
-      <option name="METHOD_NAME" value="testMultipy" />
+      <option name="METHOD_NAME" value="testNonLegalInteger" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FractionTest.testNegate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FractionTest.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Fraction" />
       <extension name="coverage">
         <pattern>
@@ -149,7 +150,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="fraction" />
       <option name="MAIN_CLASS_NAME" value="fraction.FractionTest" />
-      <option name="METHOD_NAME" value="testNegate" />
+      <option name="METHOD_NAME" value="testToString" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -157,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.FractionTest.testNegate" />
+        <item itemvalue="JUnit.FractionTest.testNonLegalInteger" />
         <item itemvalue="JUnit.FractionTest" />
-        <item itemvalue="JUnit.FractionTest.testDivide" />
-        <item itemvalue="JUnit.FractionTest.testFraction" />
-        <item itemvalue="JUnit.FractionTest.testMultipy" />
+        <item itemvalue="JUnit.FractionTest.testDivideByZero" />
+        <item itemvalue="JUnit.FractionTest.testToString" />
+        <item itemvalue="JUnit.FractionTest.testCompareTo" />
       </list>
     </recent_temporary>
   </component>
@@ -178,7 +179,7 @@
       <workItem from="1586242874059" duration="3088000" />
       <workItem from="1586246342583" duration="12158000" />
       <workItem from="1586287102834" duration="620000" />
-      <workItem from="1586445190999" duration="10331000" />
+      <workItem from="1586445190999" duration="14899000" />
     </task>
     <servers />
   </component>
@@ -202,22 +203,22 @@
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="678" y="242" width="855" height="564" key="#com.intellij.openapi.roots.ui.configuration.libraryEditor.LibraryEditorDialog/0.0.1680.1050@0.0.1680.1050" timestamp="1586446348752" />
-    <state width="1638" height="275" key="GridCell.Tab.0.bottom" timestamp="1586855255937">
+    <state width="1638" height="275" key="GridCell.Tab.0.bottom" timestamp="1586860518771">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="275" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1586855255937" />
-    <state width="1638" height="275" key="GridCell.Tab.0.center" timestamp="1586855255935">
+    <state width="1638" height="275" key="GridCell.Tab.0.bottom/0.0.1680.1050@0.0.1680.1050" timestamp="1586860518771" />
+    <state width="1638" height="275" key="GridCell.Tab.0.center" timestamp="1586860518770">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="275" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1586855255935" />
-    <state width="1638" height="275" key="GridCell.Tab.0.left" timestamp="1586855255934">
+    <state width="1638" height="275" key="GridCell.Tab.0.center/0.0.1680.1050@0.0.1680.1050" timestamp="1586860518770" />
+    <state width="1638" height="275" key="GridCell.Tab.0.left" timestamp="1586860518769">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="275" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1586855255934" />
-    <state width="1638" height="275" key="GridCell.Tab.0.right" timestamp="1586855255936">
+    <state width="1638" height="275" key="GridCell.Tab.0.left/0.0.1680.1050@0.0.1680.1050" timestamp="1586860518769" />
+    <state width="1638" height="275" key="GridCell.Tab.0.right" timestamp="1586860518770">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state width="1638" height="275" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1586855255936" />
+    <state width="1638" height="275" key="GridCell.Tab.0.right/0.0.1680.1050@0.0.1680.1050" timestamp="1586860518770" />
     <state width="1638" height="363" key="GridCell.Tab.1.bottom" timestamp="1586854194745">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>

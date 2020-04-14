@@ -1,5 +1,7 @@
 package fraction;
 
+
+
 public class FractionImpl implements Fraction {
     /**
      * Parameters are the <em>numerator</em> and the <em>denominator</em>.
@@ -48,11 +50,21 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-        if (fraction.contains(" ")){
-            fraction = fraction.replaceAll("\\s","");
-        }
+//        if (fraction.contains(" ")){
+//            fraction = fraction.replaceAll("\\s","");    //Method is cleaner but allow for 5/  1  0 to be accepted.
+//        }
         if (fraction.contains("/")){
             String[] f = fraction.split("/");
+
+            for(int i = 0; i<f.length; i++){
+                f[i] = f[i].trim();
+            }
+            String results = String.join("", f);
+            String[] e = results.split(" ");
+            if(e.length > 2){
+                throw new NumberFormatException("Illegal format");
+            }
+
             numerator = Integer.parseInt(f[0]);
             if(Integer.parseInt(f[1]) == 0){
                 throw new ArithmeticException("Divide by zero");
@@ -62,6 +74,7 @@ public class FractionImpl implements Fraction {
             }
         }
         else{
+            fraction = fraction.trim();
             numerator = Integer.parseInt(fraction);
             denominator = 1;
         }
@@ -198,9 +211,15 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public Fraction inverse() {
-        int num = this.denominator;
-        int den = this.numerator;
-        return new FractionImpl(num, den);
+        int num = this.numerator;
+        int den = this.denominator;
+
+        if(this.numerator == 0){
+            return new FractionImpl(num, den);
+        }
+        else{
+            return new FractionImpl(den, num);
+        }
     }
 
     /**
@@ -212,7 +231,7 @@ public class FractionImpl implements Fraction {
         int tot1 = this.numerator * ((FractionImpl)o).denominator;
         int tot2 = ((FractionImpl)o).numerator * this.denominator;
 
-        if(tot1 > tot1){
+        if(tot1 > tot2){
             return 1;
         }
         else if(tot1 < tot2){

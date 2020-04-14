@@ -1,5 +1,6 @@
 package fraction;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.TestInstance;
@@ -21,7 +22,7 @@ class FractionTest {
     private Fraction f9;
 
     @BeforeAll
-    public void config(){
+    void config(){
         f0 = new FractionImpl(0);
         f1 = new FractionImpl(1, 2);
         f2 = new FractionImpl(2, 4);
@@ -35,7 +36,7 @@ class FractionTest {
 }
 
     @Test
-    public void testFraction() {
+    void testFraction() {
         assertEquals("3/5", new FractionImpl(3, 5).toString());
         assertEquals("1/2", new FractionImpl(5, 10).toString());
         assertEquals("4/3", new FractionImpl(4, 3).toString());
@@ -53,7 +54,7 @@ class FractionTest {
     }
 
     @Test
-    public void testGcd() {
+    void testGcd() {
         assertEquals(4, ((FractionImpl)f0).gcd(8, 12));
         assertEquals(2, ((FractionImpl)f0).gcd(6, 40));
         assertEquals(1, ((FractionImpl)f0).gcd(1, 3));
@@ -67,7 +68,7 @@ class FractionTest {
     }
 
     @Test
-    public void testNorm() {
+    void testNorm() {
         assertEquals(new FractionImpl(0), f0);
         assertEquals(new FractionImpl(1, 2), f1);
         assertEquals(new FractionImpl(1, 2), f2);
@@ -81,7 +82,7 @@ class FractionTest {
     }
 
     @Test
-    public void testAdd(){
+    void testAdd(){
         assertEquals(new FractionImpl(1, 2), f0.add(f1));
         assertEquals(new FractionImpl(1), f1.add(f2));
         assertEquals(new FractionImpl(1,6), f2.add(f3));
@@ -94,7 +95,7 @@ class FractionTest {
     }
 
     @Test
-    public void testSubtract(){
+    void testSubtract(){
         assertEquals(new FractionImpl(-1, 2), f0.subtract(f1));
         assertEquals(new FractionImpl(0), f1.subtract(f2));
         assertEquals(new FractionImpl(5, 6), f2.subtract(f3));
@@ -107,7 +108,7 @@ class FractionTest {
     }
 
     @Test
-    public void testMultipy(){
+    void testMultipy(){
         assertEquals(new FractionImpl(0), f0.multiply(f1));
         assertEquals(new FractionImpl(1,4), f1.multiply(f2));
         assertEquals(new FractionImpl(-1,6), f2.multiply(f3));
@@ -120,7 +121,7 @@ class FractionTest {
     }
 
     @Test
-    public void testDivide(){
+    void testDivide(){
         assertEquals(new FractionImpl(0), f0.divide(f1));
         assertEquals(new FractionImpl(1), f1.divide(f2));
         assertEquals(new FractionImpl(-3,2), f2.divide(f3));
@@ -133,7 +134,7 @@ class FractionTest {
     }
 
     @Test
-    public void testAbs(){
+    void testAbs(){
         assertEquals(new FractionImpl(0), f0.abs());
         assertEquals(new FractionImpl(1, 2), f1.abs());
         assertEquals(new FractionImpl(1,2), f2.abs());
@@ -147,7 +148,7 @@ class FractionTest {
     }
 
     @Test
-    public void testNegate(){
+    void testNegate(){
         assertEquals(new FractionImpl(0), f0.negate());
         assertEquals(new FractionImpl(-1, 2), f1.negate());
         assertEquals(new FractionImpl(-1,2), f2.negate());
@@ -160,8 +161,83 @@ class FractionTest {
         assertEquals(new FractionImpl(-1, 2), f9.negate());
     }
 
+    @Test
+    void testNEquals(){
+        assertEquals(false, f0.equals(f1));
+        assertEquals(true, f1.equals(f2));
+        assertEquals(false, f2.equals(f3));
+        assertEquals(false, f3.equals(f4));
+        assertEquals(false, f4.equals(f5));
+        assertEquals(false, f5.equals(f6));
+        assertEquals(false, f6.equals(f7));
+        assertEquals(false, f7.equals(f8));
+        assertEquals(false, f8.equals(f9));
+        assertEquals(true, f9.equals(f1));
+        assertEquals(true, f9.equals(f2));
+    }
 
+    @Test
+    void testInverse(){
+        assertEquals(new FractionImpl(0), f0.inverse());
+        assertEquals(new FractionImpl(2), f1.inverse());
+        assertEquals(new FractionImpl(2), f2.inverse());
+        assertEquals(new FractionImpl(-3), f3.inverse());
+        assertEquals(new FractionImpl(3,2), f4.inverse());
+        assertEquals(new FractionImpl(-1), f5.inverse());
+        assertEquals(new FractionImpl(1,5), f6.inverse());
+        assertEquals(new FractionImpl(7,4), f7.inverse());
+        assertEquals(new FractionImpl(7, 3), f8.inverse());
+        assertEquals(new FractionImpl(2, 1), f9.inverse());
+    }
 
+    @Test
+    void testCompareTo(){
+        assertEquals(-1, f0.compareTo(f1));
+        assertEquals(0, f1.compareTo(f2));
+        assertEquals(1, f2.compareTo(f3));
+        assertEquals(-1, f3.compareTo(f4));
+        assertEquals(1, f4.compareTo(f5));
+        assertEquals(-1, f5.compareTo(f6));
+        assertEquals(1, f6.compareTo(f7));
+        assertEquals(1, f7.compareTo(f8));
+        assertEquals(-1, f8.compareTo(f9));
+    }
 
-    // test non correct format imputs including 5/   1  0
+    @Test
+    void testToString(){
+        assertEquals("0", f0.toString());
+        assertEquals("1/2", f1.toString());
+        assertEquals("1/2", f2.toString());
+        assertEquals("-1/3", f3.toString());
+        assertEquals("2/3", f4.toString());
+        assertEquals("-1", f5.toString());
+        assertEquals("5", f6.toString());
+        assertEquals("4/7", f7.toString());
+        assertEquals("3/7", f8.toString());
+        assertEquals("1/2", f9.toString());
+    }
+
+    @Test
+    void testDivideByZero() {
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            new FractionImpl(2, 0); });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            new FractionImpl(2, -0); });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            new FractionImpl("2/  0  "); });
+        Assertions.assertThrows(ArithmeticException.class, () -> {
+            new FractionImpl("0/-0"); });
+    }
+
+    @Test
+    void testNonLegalInteger() {
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("5/ 1  0"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("   2 0   /8"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("1  4 / 4  7"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("12 / 5  2"); });
+    }
 }
