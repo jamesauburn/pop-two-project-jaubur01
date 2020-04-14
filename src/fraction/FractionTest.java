@@ -2,12 +2,11 @@ package fraction;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
 class FractionTest {
 
     private Fraction f0;
@@ -21,7 +20,7 @@ class FractionTest {
     private Fraction f8;
     private Fraction f9;
 
-    @BeforeAll
+    @BeforeEach
     void config(){
         f0 = new FractionImpl(0);
         f1 = new FractionImpl(1, 2);
@@ -239,5 +238,14 @@ class FractionTest {
             new FractionImpl("1  4 / 4  7"); });
         Assertions.assertThrows(NumberFormatException.class, () -> {
             new FractionImpl("12 / 5  2"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("12/--"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            new FractionImpl("six"); });
+        Assertions.assertThrows(NumberFormatException.class, () -> {
+            f0.inverse(); });
+
+
+
     }
 }

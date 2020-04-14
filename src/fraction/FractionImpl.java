@@ -50,21 +50,26 @@ public class FractionImpl implements Fraction {
      * @param fraction the string representation of the fraction
      */
     public FractionImpl(String fraction) {
-//        if (fraction.contains(" ")){
-//            fraction = fraction.replaceAll("\\s","");    //Method is cleaner but allow for 5/  1  0 to be accepted.
-//        }
-        if (fraction.contains("/")){
-            String[] f = fraction.split("/");
+        // a check to make sure only intergers are used in the string.
+        if (fraction.contains("[a-zA-Z]+")){
+            throw new NumberFormatException("Illegal format");
+        }
 
+        if (fraction.contains("/")){
+            // divides and cleans the fraction
+            String[] f = fraction.split("/");
             for(int i = 0; i<f.length; i++){
                 f[i] = f[i].trim();
             }
+
+            // catch any inputs that have spaced between the character or have input illegal inputs such as 5/4/3
             String results = String.join("", f);
             String[] e = results.split(" ");
             if(e.length > 2){
                 throw new NumberFormatException("Illegal format");
             }
 
+            // catch for zero division
             numerator = Integer.parseInt(f[0]);
             if(Integer.parseInt(f[1]) == 0){
                 throw new ArithmeticException("Divide by zero");
@@ -78,10 +83,12 @@ public class FractionImpl implements Fraction {
             numerator = Integer.parseInt(fraction);
             denominator = 1;
         }
+        // normalise any result that has been parsed.
         norm();
     }
 
-    protected static int gcd(int numerator, int denominator){
+    // method is protected to allow access to the package.
+    protected int gcd(int numerator, int denominator){
         int num = numerator;
         int den = denominator;
         int temp  = 0;
@@ -93,6 +100,7 @@ public class FractionImpl implements Fraction {
         return Math.abs(num);
     }
 
+    // method is protected to allow access to the package.
     protected void norm(){
         int low = gcd(numerator, denominator);
         if(denominator < 0) {
@@ -185,11 +193,13 @@ public class FractionImpl implements Fraction {
      */
     @Override
     public boolean equals(Object obj) {
-//        if (this == obj){return true;}
+
+        //catch to make sure the classes are the same
         if(this.getClass() != obj.getClass()){
             return false;
         }
-        FractionImpl fraction = (FractionImpl) obj;                               //check this
+
+        FractionImpl fraction = (FractionImpl) obj;
         if(this.numerator == fraction.numerator && this.denominator == fraction.denominator){
             return true;
         }
@@ -214,8 +224,9 @@ public class FractionImpl implements Fraction {
         int num = this.numerator;
         int den = this.denominator;
 
+        // catch inverse o zero
         if(this.numerator == 0){
-            return new FractionImpl(num, den);
+            throw new NumberFormatException("Infinity!");
         }
         else{
             return new FractionImpl(den, num);
